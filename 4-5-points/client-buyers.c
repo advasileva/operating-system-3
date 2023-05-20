@@ -19,31 +19,29 @@ typedef struct person {
 void buyer(int *list, int size, int sock) {
     int str_len;
     char *str;
-    printf("Buyer PID: %d\n", getpid());
 
     for (size_t i = 0; i < size; i++) { // Последовательно покупаем все товары из списка
         if (list[i] % 2 == 1) { // Проверяем, в какой отдел нам надо идти
 
-            printf("Buying stock %d from 1\n", list[i]);
+            printf("[BUYER %d] Buying stock %d from 1\n", getpid(), list[i]);
             sprintf(str, "%d", list[i]);
             str_len = strlen(str); 
             send(sock, str, RCVBUFSIZE, 0);
-            printf("Msg sended\n");
             
             sleep(1);
 
         } else {
 
-            printf("Buying stock %d from 2\n", list[i]);
+            printf("[BUYER %d] Buying stock %d from 2\n", getpid(), list[i]);
             sprintf(str, "%d", list[i]);
             str_len = strlen(str); 
             send(sock, str, RCVBUFSIZE, 0);
-            printf("Msg sended\n");
             
             sleep(1);
 
         }
     }
+    exit(0);
 }
 
 // Рекурсивный форк процессов-покупателей

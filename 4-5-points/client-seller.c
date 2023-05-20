@@ -10,12 +10,9 @@
 
 // Логика работы продавца
 void seller(int id) {
-    printf("Seller %d PID: %d\n", id, getpid());
-
-    printf("Selling stock with id=%d\n",  id);
+    printf("[SELLER %d] Selling stock with id=%d\n", getpid(), id);
     sleep(1);
 
-    printf("Seller %d finished\n", id);
 }
 
 void HandleTCPClient(int clntSocket)

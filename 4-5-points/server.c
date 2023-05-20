@@ -41,13 +41,12 @@ void HandleTCPClient(int clntSocket, char *argv[])
  
     while (recvMsgSize > 0)  
     { 
-        printf("Server got product with id=%s\n", echoBuffer);  
+        printf("[SERVER %d] Got product with id=%s\n", getpid(), echoBuffer);  
         send(clntSocket, echoBuffer, recvMsgSize, 0);
         recvMsgSize = recv(clntSocket, echoBuffer, RCVBUFSIZE, 0);
         send_to_seller(echoBuffer, argv);
     }
 
-printf("Close");
     close(clntSocket);
 }
 
@@ -78,7 +77,7 @@ int main(int argc, char *argv[])
 
         clntSock = accept(servSock, (struct sockaddr *) &echoClntAddr, &clntLen);
 
-        printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
+        printf("[SERVER %d] Handling client %s\n", getpid(), inet_ntoa(echoClntAddr.sin_addr));
 
         HandleTCPClient(clntSock, argv);
     }
