@@ -1,12 +1,12 @@
-points = 6
 tests = 3
 
 chmod:
 	chmod -R +xr .
 
+.PHONY: all test clean
 compile:
-	./scripts/compile.sh ${points}
+	./scripts/compile.sh
 
 run:
 	make chmod
-	./scripts/run.sh ${points} ${tests}
+	./scripts/run.sh ${tests}
