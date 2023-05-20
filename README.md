@@ -20,22 +20,21 @@
 
 **Исполнитель: Васильева Алёна Дмитриевна БПИ218**
 
-**Делала на оценку 6 баллов**
+**Делала на оценку 7 баллов**
 
-### 4 балла 
-### Именнованные POSIX семафоры
+### 4-5 баллов
 
-*Разработать консольное приложение, в котором единый родительский процесс запускает требуемое число дочерних процессов.*
+*Разработать клиент–серверное приложение, в котором сервер (или серверы) и клиенты независимо друг от друга отображают только ту информацию, которая поступает им во время обмена. То есть, отсутствует какой-либо общий вывод интегрированной информации, отображающий поведение системы в целом.*
 
-1. *В отчете приведены фамилия, имя, отчество исполнителя, группа.*
+1. *В отчете необходимо привести фамилию, имя, отчество исполнителя, группу.*
 
     Продублирую: Васильева Алёна Дмитриевна БПИ218
 
-2. *Приведено условие задачи.*
+2. *Привести номер варианта и условие задачи.*
 
     [Условие](#задание)
 
-3. *Представить сценарий решаемой задачи поясняющий, каким образом исходные сущности и их поведение отображаются в процессы и их взаимодействие.*
+3. *Представить сценарий решаемой задачи поясняющий, каким образом исходные сущности и их поведение отображаются в серверы, клиенты, процессы и как осуществляется их взаимодействие.*
 
     Задача описана достаточно подробно. У нас есть 5 сущностей -- продавец, покупатель, товар, ассортимент, список.
     
@@ -47,252 +46,38 @@
 
     В коде есть комментарии :)
 
-4. *Множество процессов взаимодействуют с использованием именованных POSIX семафоров. Обмен данными ведется через разделяемую память в стандарте POSIX.*
+4. *При запуске программ требуемые для их работы IP адреса и порты необходимо задавать в командной строке, чтобы обеспечить гибкую подстройку к любой сети.*
 
     Разработанная программа находится в файле `4-points/main.c`
 
-5. *Реализовать завершение программы в соответствии с условием задачи, а также предусмотреть корректное завершение по прерыванию с клавиатуры по соответствующему сигналу.*
+5. *Для обеспечения корректного взаимодействия сетевых приложений и существующих в них процессов допускается использовать любые ранее изученные программные объекты.*
 
-    По умолчанию программа завершается после завершения работы покупателей. Также можно прервать программу, например, с помощью `Ctrl+C`.
+    TBA
 
-6. *В программе предусмотреть удаление семафоров и разделяемой памяти по ее завершению любым из способов.*
+6. * Разработанное приложение должно работать как на одном компьютере так и в распределенном (сетевом) режиме на нескольких компьютерах, по которым можно будет разнести серверы и клиентов.*
 
-    Завершенение работы реализовано так:
-    ```c
-    shm_unlink(memn);
-
-    sem_close(sem_first);
-    sem_close(sem_second);
-    ```
+    TBA
 
 7. *Результаты работы программы должны быть отражены в отчете.*
 
     Пример работы:
     ```bash
-    Program for 4 points
-    Test 1
-    Seller 1 PID: 83142
-    Seller 2 PID: 83143
-    Buyer PID: 83144
-    Buying stock 2 from 2
-    Buying stock 3 from 1
-    Selling stock 2 by 2
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Selling stock 5 by 1
-    Buying stock 6 from 2
-    Selling stock 6 by 2
-    Seller 1 finished
-    Seller 2 finished
-
-    Test 2
-    Seller 1 PID: 83157
-    Seller 2 PID: 83158
-    Buyer PID: 83159
-    Buying stock 4 from 2
-    Buyer PID: 83160
-    Selling stock 4 by 2
-    Buying stock 1 from 1
-    Buying stock 2 from 2
-    Selling stock 2 by 2
-    Selling stock 1 by 1
-    Buying stock 3 from 1
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Selling stock 5 by 1
-    Seller 1 finished
-    Seller 2 finished
-
-    Test 3
-    Seller 1 PID: 83167
-    Seller 2 PID: 83168
-    Buyer PID: 83169
-    Buying stock 3 from 1
-    Buyer PID: 83170
-    Buying stock 4 from 2
-    Buyer PID: 83171
-    Selling stock 3 by 1
-    Selling stock 4 by 2
-    Buying stock 1 from 1
-    Buying stock 2 from 2
-    Selling stock 2 by 2
-    Selling stock 1 by 1
-    Buying stock 3 from 1
-    Buying stock 6 from 2
-    Selling stock 6 by 2
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Selling stock 5 by 1
-    Seller 1 finished
-    Seller 2 finished
-
-
-    Programs finished
+    TBA
     ```
 
-### 5 баллов
-### Неименнованные POSIX семафоры
+8. *Завершение работы клиентов и серверов на данном этапе не оговаривается. Но оно должно быть представлено в сценарии.*
 
-*В дополнение к программе на предыдущую оценку необходимо разработать программу, в которой для взаимодействия процессов используется один из двух вариантов, описанных выше, но не реализованных на предшествующую оценку.*
+    TBA
 
-1. *Множество процессов взаимодействуют с использованием неименованных POSIX семафоров расположенных в разделяемой памяти. Обмен данными также ведется через разделяемую память в стандарте POSIX.*
+### 6-7 баллов
 
-    Разработанная программа находится в файле `5-points/main.c`
+*В дополнение к программе на предыдущую оценку необходимо разработать клиентскую программу, подключаемую к серверу, которая предназначена для отображение комплексной информации о выполнении приложения в целом. То есть, данный программный модуль должен адекватно отображать поведение моделируемой системы, позволяя не пользоваться отдельными видами, предоставляемыми клиентами и серверами по отдельности.*
 
-2. *Реализовать завершение программы в соответствии с условием задачи, а также предусмотреть корректное завершение по прерыванию с клавиатуры по соответствующему сигналу.*
+1. *Отчет расширить информацией о добавленном клиенте, модификациях других частей программы. Привести соответствующие результаты работы данной программы.*
 
-    Аналогично предыдущему пункту.
-
-3. *В программе предусмотреть удаление семафоров и разделяемой памяти по ее завершению любым из способов.*
-
-    Аналогично предыдущему пункту.
-
-4. *Результаты работы программы должны быть отражены в отчете.*
-
-    Пример работы:
-    ```bash
-    Program for 5 points
-    Test 1
-    Seller 1 PID: 84069
-    Seller 2 PID: 84070
-    Buyer PID: 84071
-    Buying stock 2 from 2
-    Selling stock 2 by 2
-    Buying stock 3 from 1
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Buying stock 6 from 2
-    Selling stock 5 by 1
-    Selling stock 6 by 2
-    Seller 1 finished
-    Seller 2 finished
-
-    Test 2
-    Seller 1 PID: 84081
-    Seller 2 PID: 84082
-    Buyer PID: 84083
-    Buying stock 4 from 2
-    Buyer PID: 84084
-    Selling stock 4 by 2
-    Buying stock 1 from 1
-    Buying stock 2 from 2
-    Selling stock 1 by 1
-    Selling stock 2 by 2
-    Buying stock 3 from 1
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Selling stock 5 by 1
-    Seller 2 finished
-    Seller 1 finished
-
-    Test 3
-    Seller 1 PID: 84097
-    Seller 2 PID: 84098
-    Buyer PID: 84099
-    Buying stock 3 from 1
-    Buyer PID: 84100
-    Buying stock 4 from 2
-    Buyer PID: 84101
-    Selling stock 3 by 1
-    Selling stock 4 by 2
-    Buying stock 1 from 1
-    Buying stock 2 from 2
-    Selling stock 1 by 1
-    Selling stock 2 by 2
-    Buying stock 3 from 1
-    Buying stock 6 from 2
-    Selling stock 6 by 2
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Selling stock 5 by 1
-    Seller 2 finished
-    Seller 1 finished
+    TBA
 
 
-    Programs finished
-    ```
-
-### 6 баллов 
-### UNIX SYSTEM V
-
-*В дополнение к программе на предыдущую оценку необходимо разработать программу, в которой для взаимодействия процессов используется один из двух вариантов, описанных выше, но не реализованных на предшествующую оценку.*
-
-1. *Множество процессов взаимодействуют с использованием семафоров в стандарте UNIX SYSTEM V. Обмен данными ведется через разделяемую память в стандарте UNIX SYSTEM V.*
-
-    Разработанная программа находится в файле `6-points/main.c`
-
-2. *Реализовать завершение программы в соответствии с условием задачи, а также предусмотреть корректное завершение по прерыванию с клавиатуры по соответствующему сигналу.*
-
-    Аналогично предыдущему пункту.
-
-3. *В программе предусмотреть удаление семафоров и разделяемой памяти по ее завершению любым из способов.*
-
-    Аналогично предыдущему пункту.
-
-4. *Результаты работы программы должны быть отражены в отчете.*
-
-    Пример работы:
-    ```bash
-    Program for 6 points
-    Test 1
-    Seller 1 PID: 84428
-    Seller 2 PID: 84429
-    Buyer PID: 84430
-    Buying stock 2 from 2
-    Selling stock 2 by 2
-    Buying stock 3 from 1
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Buying stock 6 from 2
-    Selling stock 5 by 1
-    Selling stock 6 by 2
-    Seller 1 finished
-    Seller 2 finished
-
-    Test 2
-    Seller 1 PID: 84450
-    Seller 2 PID: 84451
-    Buyer PID: 84452
-    Buying stock 4 from 2
-    Buyer PID: 84453
-    Selling stock 4 by 2
-    Buying stock 1 from 1
-    Buying stock 2 from 2
-    Selling stock 2 by 2
-    Selling stock 1 by 1
-    Buying stock 3 from 1
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Selling stock 5 by 1
-    Seller 2 finished
-    Seller 1 finished
-
-    Test 3
-    Seller 1 PID: 84460
-    Seller 2 PID: 84461
-    Buyer PID: 84462
-    Buying stock 3 from 1
-    Buyer PID: 84463
-    Buying stock 4 from 2
-    Buyer PID: 84464
-    Selling stock 3 by 1
-    Selling stock 4 by 2
-    Buying stock 6 from 2
-    Buying stock 1 from 1
-    Selling stock 6 by 2
-    Selling stock 1 by 1
-    Buying stock 2 from 2
-    Selling stock 2 by 2
-    Buying stock 3 from 1
-    Selling stock 3 by 1
-    Buying stock 5 from 1
-    Selling stock 5 by 1
-    Seller 2 finished
-    Seller 1 finished
-
-
-    Programs finished
-    ```
 
 ## Как запустить
 
