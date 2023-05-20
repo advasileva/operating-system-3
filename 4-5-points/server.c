@@ -12,20 +12,27 @@ void send_to_seller(char *msg, char *argv[])
 {
     int sock;                        
     struct sockaddr_in echoServAddr;
-    unsigned short echoServPort;     
+    unsigned short echoServPort1, echoServPort2;     
     char *servIP;                    
     char echoBuffer[RCVBUFSIZE];     
     int bytesRcvd, totalBytesRcvd;   
     
     servIP = argv[2];        
-    echoServPort = atoi(argv[3]);
+    echoServPort1 = atoi(argv[3]);
+    echoServPort2 = atoi(argv[4]);
 
     sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     memset(&echoServAddr, 0, sizeof(echoServAddr));  
     echoServAddr.sin_family      = AF_INET;    
-    echoServAddr.sin_addr.s_addr = inet_addr(servIP);  
-    echoServAddr.sin_port        = htons(echoServPort); 
+    echoServAddr.sin_addr.s_addr = inet_addr(servIP);
+    if (atoi(msg) % 2 == 1)
+    {
+        echoServAddr.sin_port        = htons(echoServPort1); 
+    } else {
+        echoServAddr.sin_port        = htons(echoServPort2); 
+    }
+    
 
     connect(sock, (struct sockaddr *) &echoServAddr, sizeof(echoServAddr));
  

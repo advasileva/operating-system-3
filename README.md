@@ -53,17 +53,17 @@
 
     *Сервер:*
     ```
-    ./server {server_port} {sellers_ip} {sellers_port}
+    ./server {server_port} {sellers_ip} {seller_2_port} {seller_1_port}
     ```
 
     *Покупатели:*
     ```
-	./client-buyers {sellers_ip} {sellers_port} {test}
+	./client-buyers {server_ip} {server_port} {test}
     ```
 
     *Продавцы:*
     ```
-	./4-5-points/client-seller {sellers_port}
+	./client-seller {sellers_port}
     ```
 
 5. *Для обеспечения корректного взаимодействия сетевых приложений и существующих в них процессов допускается использовать любые ранее изученные программные объекты.*
@@ -74,10 +74,59 @@
 
 7. *Результаты работы программы должны быть отражены в отчете.*
 
-    Пример работы:
-    ```bash
-    TBA
+    Для демонстрации работы взяла тест
     ```
+    2
+    3
+    2 3 5
+    2
+    4 1
+    ```
+
+    В нём у нас есть 2 клиента, первый клиент должен купить товары 3 и 5 в первом отделе и товар 2 во втором, второй клиент купит товар 1 в первом отделе и товар 4 во втором
+
+    Логи сервера:
+    ```bash
+    $ make server
+    ./4-5-points/server 50124 127.0.0.1 50225 50226
+    [SERVER 11146] Handling client 127.0.0.1
+    [SERVER 11146] Got product with id=4
+    [SERVER 11146] Got product with id=2
+    [SERVER 11146] Got product with id=1
+    [SERVER 11146] Got product with id=3
+    [SERVER 11146] Got product with id=5
+    ```
+
+    Логи клиентов-покупателей:
+    ```bash
+    $ make buyers
+    ./4-5-points/client-buyers 127.0.0.1 50124 tests/test2.in
+    Init buyers client connected to server
+    [BUYER 11183] Buying stock 4 from 2
+    [BUYER 11184] Buying stock 2 from 2
+    [BUYER 11183] Buying stock 1 from 1
+    [BUYER 11184] Buying stock 3 from 1
+    [BUYER 11184] Buying stock 5 from 1
+    ```
+
+    Логи первого (нечётного) продавца:
+    ```bash
+    $ make seller-1
+    ./4-5-points/client-seller 50225
+    [SELLER 11163] Selling stock with id=1
+    [SELLER 11163] Selling stock with id=3
+    [SELLER 11163] Selling stock with id=5
+    ```
+
+    Логи второго (чётного) продавца:
+    ```bash
+    $ make seller-2
+    ./4-5-points/client-seller 50226
+    [SELLER 11174] Selling stock with id=4
+    [SELLER 11174] Selling stock with id=2
+    ```
+
+    Видим, что вывод программы соответствует логике работы
 
 8. *Завершение работы клиентов и серверов на данном этапе не оговаривается. Но оно должно быть представлено в сценарии.*
 

@@ -22,24 +22,14 @@ void buyer(int *list, int size, int sock) {
 
     for (size_t i = 0; i < size; i++) { // Последовательно покупаем все товары из списка
         if (list[i] % 2 == 1) { // Проверяем, в какой отдел нам надо идти
-
             printf("[BUYER %d] Buying stock %d from 1\n", getpid(), list[i]);
-            sprintf(str, "%d", list[i]);
-            str_len = strlen(str); 
-            send(sock, str, RCVBUFSIZE, 0);
-            
-            sleep(1);
-
         } else {
-
             printf("[BUYER %d] Buying stock %d from 2\n", getpid(), list[i]);
-            sprintf(str, "%d", list[i]);
-            str_len = strlen(str); 
-            send(sock, str, RCVBUFSIZE, 0);
-            
-            sleep(1);
-
         }
+        sprintf(str, "%d", list[i]);
+        send(sock, str, RCVBUFSIZE, 0);
+        
+        sleep(3);
     }
     exit(0);
 }
