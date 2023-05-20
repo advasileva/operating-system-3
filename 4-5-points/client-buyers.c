@@ -69,8 +69,8 @@ int main(int argc, char *argv[])
     unsigned int echoStringLen;      
     int bytesRcvd, totalBytesRcvd;   
     
-    servIP = "127.0.0.1";        
-    echoServPort = 50225;
+    servIP = argv[1];        
+    echoServPort = atoi(argv[2]);
 
     sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
      // Ввод информации о покупателях
     int shm, shm_size = 10, n = 0, k = 0, t = 0;
-    int input = open(argv[1], O_RDONLY);
+    int input = open(argv[3], O_RDONLY);
     person buyers[20];
 
     read(input, &n, 1);

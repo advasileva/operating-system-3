@@ -8,7 +8,7 @@
 #define RCVBUFSIZE 8  
 #define MAXPENDING 5
 
-void send_to_seller(char *msg)
+void send_to_seller(char *msg, char *argv[])
 {
     int sock;                        
     struct sockaddr_in echoServAddr;
@@ -17,8 +17,8 @@ void send_to_seller(char *msg)
     char echoBuffer[RCVBUFSIZE];     
     int bytesRcvd, totalBytesRcvd;   
     
-    servIP = "127.0.0.1";        
-    echoServPort = 50226;
+    servIP = argv[2];        
+    echoServPort = atoi(argv[3]);
 
     sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -34,7 +34,7 @@ void send_to_seller(char *msg)
     close(sock);
 }
 
-void HandleTCPClient(int clntSocket)
+void HandleTCPClient(int clntSocket, char *argv[])
 { 
     char echoBuffer[RCVBUFSIZE];      
     int recvMsgSize = recv(clntSocket, echoBuffer, RCVBUFSIZE, 0);
@@ -44,7 +44,7 @@ void HandleTCPClient(int clntSocket)
         printf("Server got product with id=%s\n", echoBuffer);  
         send(clntSocket, echoBuffer, recvMsgSize, 0);
         recvMsgSize = recv(clntSocket, echoBuffer, RCVBUFSIZE, 0);
-        send_to_seller(echoBuffer);
+        send_to_seller(echoBuffer, argv);
     }
 
 printf("Close");
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     unsigned short echoServPort;   
     unsigned int clntLen;   
 
-    echoServPort = 50225;
+    echoServPort = atoi(argv[1]);
 
     servSock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -80,6 +80,6 @@ int main(int argc, char *argv[])
 
         printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
 
-        HandleTCPClient(clntSock);
+        HandleTCPClient(clntSock, argv);
     }
 }

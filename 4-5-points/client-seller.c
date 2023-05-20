@@ -20,11 +20,10 @@ void seller(int id) {
 
 void HandleTCPClient(int clntSocket)
 {
-    printf("ndnlng");
     char echoBuffer[RCVBUFSIZE];        
     int recvMsgSize = recv(clntSocket, echoBuffer, RCVBUFSIZE, 0);
 
-    seller(4);
+    seller(echoBuffer[0] - '0');
 
     close(clntSocket);
 }
@@ -38,7 +37,7 @@ int main(int argc, char *argv[])
     unsigned short echoServPort;   
     unsigned int clntLen;   
 
-    echoServPort = 50226;
+    echoServPort = atoi(argv[1]);
 
     servSock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -55,7 +54,6 @@ int main(int argc, char *argv[])
         clntLen = sizeof(echoClntAddr);
 
         clntSock = accept(servSock, (struct sockaddr *) &echoClntAddr, &clntLen);
-        printf("alive\n");
 
         HandleTCPClient(clntSock);
     }
