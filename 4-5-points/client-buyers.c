@@ -18,7 +18,7 @@ typedef struct person {
 // Логика работы покупателя
 void buyer(int *list, int size, int sock) {
     int str_len;
-    char *str;
+    char str[RCVBUFSIZE];
 
     for (size_t i = 0; i < size; i++) { // Последовательно покупаем все товары из списка
         if (list[i] % 2 == 1) { // Проверяем, в какой отдел нам надо идти
@@ -31,7 +31,6 @@ void buyer(int *list, int size, int sock) {
         
         sleep(3);
     }
-    exit(0);
 }
 
 // Рекурсивный форк процессов-покупателей

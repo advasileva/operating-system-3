@@ -1,4 +1,6 @@
 tests = 3
+# dir=4-5-points
+dir=6-7-points
 
 chmod:
 	chmod -R +xr .
@@ -12,13 +14,16 @@ run:
 	./scripts/run.sh ${tests}
 
 server:
-	./4-5-points/server 50124 127.0.0.1 50225 50226
+	./${dir}/server 50124 127.0.0.1 50225 50226 127.0.0.1 50321
 
 buyers:
-	./4-5-points/client-buyers 127.0.0.1 50124 tests/test2.in
+	./${dir}/client-buyers 127.0.0.1 50124 tests/test2.in 127.0.0.1 50321
 
 seller-1:
-	./4-5-points/client-seller 50225
+	./${dir}/client-seller 50225 127.0.0.1 50321
 
 seller-2:
-	./4-5-points/client-seller 50226
+	./${dir}/client-seller 50226 127.0.0.1 50321
+
+monitoring:
+	./${dir}/monitoring 50321

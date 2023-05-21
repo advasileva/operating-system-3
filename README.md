@@ -63,7 +63,7 @@
 
     *Продавцы:*
     ```
-	./client-seller {sellers_port}
+	./client-seller {seller_port}
     ```
 
 5. *Для обеспечения корректного взаимодействия сетевых приложений и существующих в них процессов допускается использовать любые ранее изученные программные объекты.*
@@ -138,7 +138,27 @@
 
 1. *Отчет расширить информацией о добавленном клиенте, модификациях других частей программы. Привести соответствующие результаты работы данной программы.*
 
-    TBA
+    
+
+    ```bash
+    [MONITORING 19239] Started
+    [MONITORING 19239] [SERVER 19203] Handling client 127.0.0.1
+    [MONITORING 19239] [BUYER 19326] Buying stock 4 from 2
+    [MONITORING 19239] [BUYER 19327] Buying stock 2 from 2
+    [MONITORING 19239] [SERVER 19313] Got product with id=4
+    [MONITORING 19239] [SERVER 19313] Got product with id=2
+    [MONITORING 19239] [SELLER 19226] Selling stock with id=4
+    [MONITORING 19239] [SELLER 19226] Selling stock with id=2
+    [MONITORING 19239] [BUYER 19326] Buying stock 1 from 1
+    [MONITORING 19239] [BUYER 19327] Buying stock 3 from 1
+    [MONITORING 19239] [SERVER 19313] Got product with id=1
+    [MONITORING 19239] [SELLER 19215] Selling stock with id=1
+    [MONITORING 19239] [SERVER 19313] Got product with id=3
+    [MONITORING 19239] [SELLER 19215] Selling stock with id=3
+    [MONITORING 19239] [BUYER 19327] Buying stock 5 from 1
+    [MONITORING 19239] [SERVER 19313] Got product with id=5
+    [MONITORING 19239] [SELLER 19215] Selling stock with id=5
+    ```
 
 
 
